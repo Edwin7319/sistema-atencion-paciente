@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tabla" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" uuid="65feeb9e-6de5-4531-8fa2-524bcf60fbbc">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="seleccion" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["SELECT concat(apellido1Per ,'  ',nombre1Per) as nombreMedico, pro.descripcionLugGeo ,count(atencion.idAtencion) as NAte FROM paciente, empleado, especialidad, persona, atencion, lugargeo can, lugargeo pro, lugargeo parr  where empleado.idpersona=persona.idPersona and empleado.idEspecialidad=especialidad.idEspecialidad and atencion.idPaciente=paciente.idpaciente and atencion.idEmpleado=empleado.idEmpleado and paciente.idLugGeoResidPac = parr.idLugarGeo and parr.idLugarGeoPadre=can.idLugarGeo and can.idLugarGeoPadre=pro.idLugarGeo group by nombreMedico"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[$P!{seleccion}]]>
+	</queryString>
+	<field name="nombreMedico" class="java.lang.String"/>
+	<field name="descripcionLugGeo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAte" class="java.lang.Long"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-1" x="168" y="1" width="198" height="21" uuid="27b42862-5729-4349-99d8-95d2d99b2b30"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[TABLA DE PACIENTES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="100" splitType="Stretch">
+			<crosstab>
+				<reportElement key="crosstab-1" x="0" y="0" width="535" height="100" uuid="160f020b-14d6-44b6-ad7d-1cc023c57bb5"/>
+				<crosstabHeaderCell>
+					<cellContents mode="Transparent"/>
+				</crosstabHeaderCell>
+				<rowGroup name="nombreMedico" width="100" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{nombreMedico}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Transparent">
+							<textField isBlankWhenNull="false">
+								<reportElement key="textField" x="0" y="0" width="100" height="30" uuid="652421a4-9f3d-4f59-85b2-da2c48cfa6b4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{nombreMedico}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Transparent">
+							<textField isBlankWhenNull="false">
+								<reportElement key="textField" x="0" y="0" width="100" height="30" uuid="a16ab0ca-ef36-48e2-a1e8-92302ecc47f9"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA["nombreMedico total"]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="descripcionLugGeo" height="25" totalPosition="End" headerPosition="Center">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{descripcionLugGeo}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents mode="Transparent">
+							<textField isBlankWhenNull="false">
+								<reportElement key="textField" x="0" y="0" width="50" height="25" uuid="7d9e20a7-9227-45f9-8143-08505799f8f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$V{descripcionLugGeo}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents mode="Transparent">
+							<textField isBlankWhenNull="false">
+								<reportElement key="textField" x="0" y="0" width="50" height="25" uuid="7d19a58a-a707-4367-aa1d-0322a12736ba"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA["total"]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="NAte_Count" class="java.lang.Long" calculation="Count">
+					<measureExpression><![CDATA[$F{NAte}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="30">
+					<cellContents mode="Transparent">
+						<textField isBlankWhenNull="false">
+							<reportElement key="textField" x="0" y="0" width="50" height="30" uuid="2e6655e3-4628-456b-a7af-715082506c0c"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{NAte_Count}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="30" columnTotalGroup="descripcionLugGeo">
+					<cellContents mode="Transparent">
+						<textField isBlankWhenNull="false">
+							<reportElement key="textField" x="0" y="0" width="50" height="30" uuid="00fe1226-71eb-498d-bd75-448dbb5b1dfa"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{NAte_Count}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="30" rowTotalGroup="nombreMedico">
+					<cellContents mode="Transparent">
+						<textField isBlankWhenNull="false">
+							<reportElement key="textField" x="0" y="0" width="50" height="30" uuid="841f14b6-b2ab-4552-acf1-018058c51a6f"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{NAte_Count}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" height="30" rowTotalGroup="nombreMedico" columnTotalGroup="descripcionLugGeo">
+					<cellContents mode="Transparent">
+						<textField isBlankWhenNull="false">
+							<reportElement key="textField" x="0" y="0" width="50" height="30" uuid="d80989b8-2151-430a-a305-8f8b433f40af"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle"/>
+							<textFieldExpression><![CDATA[$V{NAte_Count}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<whenNoDataCell>
+					<cellContents mode="Transparent"/>
+				</whenNoDataCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

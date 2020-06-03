@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="listaPacientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb44949e-dba5-45fe-9ff0-ec58a1f52cb5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="subtitulo" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["Completa"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="seleccion" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["SELECT p.*, pe.*,a.idPaciente, a.idEmpleado, a.fechaAte FROM paciente p, persona pe, atencion a, empleado e WHERE p.idpersona=pe.idpersona and a.idPaciente=p.idPaciente and a.idEmpleado=e.idEmpleado and a.idPaciente=p.idPaciente"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[$P!{seleccion}]]>
+	</queryString>
+	<field name="idPaciente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hclPac" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sexoPac" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="direccionPac" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="estadoCivilPac" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaNacPac" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idLugGeoNacePac" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idLugGeoResidPac" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idPersona" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre1Per" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre2Per" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido1Per" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellido2Per" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="correoPer" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cedulaPer" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefonoPer" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="idEmpleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fechaAte" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="97" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="0" y="0" width="555" height="24" forecolor="#CC0000" backcolor="#000000" uuid="09d137d3-c5da-4b92-a827-d795248d5b0f"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTA PACIENTES]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="0" y="24" width="125" height="20" uuid="c0ec69a4-9d11-49a0-acf9-1636eb1a3dc6"/>
+				<textFieldExpression><![CDATA["LISTA DE PACIENTES:"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="108" y="77" width="71" height="20" uuid="dcd14ad5-d411-47f4-a90c-d9c9827064cc"/>
+				<textFieldExpression><![CDATA["NOMBRE"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="0" y="77" width="71" height="20" uuid="d2204ec0-7db2-4c7d-a06d-bb2ac4de1ffd"/>
+				<textFieldExpression><![CDATA["APELLIDO"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="207" y="77" width="71" height="20" uuid="256a90b5-d535-4cbb-8c1d-0488d05407a8"/>
+				<textFieldExpression><![CDATA["CEDULA"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="286" y="77" width="71" height="20" uuid="d8162922-6001-43c6-a1f6-c71bc72e066f"/>
+				<textFieldExpression><![CDATA["HCL"]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-1" x="373" y="77" width="71" height="20" uuid="f64ba694-ae2f-4646-aba6-937981bf32b8"/>
+				<textFieldExpression><![CDATA["SEXO"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="139" y="24" width="201" height="20" uuid="c0fa0572-c86f-4b26-a8d7-82c1b79402c1"/>
+				<textFieldExpression><![CDATA[$P{subtitulo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="455" y="77" width="100" height="20" uuid="c1b0a8e4-aa66-4ad5-b4b8-deb8a09bdb19"/>
+				<text><![CDATA["FECHA ATENCION"]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="0" y="17" width="100" height="20" uuid="80dd95f1-a5ae-4154-ad1e-b57b8fc12c0f"/>
+				<textFieldExpression><![CDATA[$F{apellido1Per}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="207" y="17" width="79" height="20" uuid="f1df5d24-55cc-4a51-a603-d1b685c1ee20"/>
+				<textFieldExpression><![CDATA[$F{cedulaPer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-2" x="373" y="17" width="80" height="17" uuid="489979d5-a012-4314-9cfc-bd1c9bf3a87b"/>
+				<textFieldExpression><![CDATA[$F{sexoPac}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-3" x="286" y="18" width="71" height="16" uuid="e371d4ed-19c9-489e-b572-e68c99a124e4"/>
+				<textFieldExpression><![CDATA[$F{hclPac}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="107" y="17" width="100" height="20" uuid="1ef07431-567c-482a-848a-164815acf4bb"/>
+				<textFieldExpression><![CDATA[$F{nombre1Per}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="15" width="73" height="20" uuid="199f63be-e7a5-4f7e-823f-0080a4e9d373"/>
+				<textFieldExpression><![CDATA[$F{fechaAte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
